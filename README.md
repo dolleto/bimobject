@@ -1,5 +1,8 @@
 # Wine Manager
 
+Simple backend API with a datastore to service a frontend for a wine collection management application.
+Project is done using Python and Django as it was the easiest for me.
+
 ## Pre-requisites
 
 - Python 3.11 is installed
