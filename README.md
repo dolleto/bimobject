@@ -2,17 +2,25 @@
 
 ## Pre-requisites
 
-- Python 3.11
-- Docker
+- Python 3.11 is installed
+- Docker is installed
 
 ## Set local environment
 
-1. Build and start Docker containers: ```docker-compose up --build```
-2. Run migrations: ```docker-compose exec web python manage.py migrate```
+1. Build and start Docker containers:
+```
+docker-compose up --build
+```
+2. Run migrations:
+```
+docker-compose exec web python manage.py migrate
+```
 
 ## Run tests
 
-```docker-compose exec web python manage.py test```
+```
+docker-compose exec web python manage.py test
+```
 
 ## Example requests
 
@@ -83,6 +91,8 @@ curl -X GET "http://localhost:8000/api/winebottles/?style=dry"
 curl -X GET "http://localhost:8000/api/winebottles/by_winemaker/?winemaker_id=1"
 ```
 
-## Additional work to improve this project
-- Pagination via DRF settings
+## Additional improvement directions this project
+
+- Add Cellar relation (a winemaker may have multiple cellars)
+- Pagination
 - Authentication
