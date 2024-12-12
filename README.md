@@ -1,4 +1,4 @@
-# bimobject
+# Wine Manager
 
 ## Pre-requisites
 
