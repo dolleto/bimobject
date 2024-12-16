@@ -97,5 +97,4 @@ curl -X GET "http://localhost:8000/api/winebottles/by_winemaker/?winemaker_id=1"
 ## Additional improvement directions for this project
 
 - Add Cellar relation (a winemaker may have multiple cellars)
-- Pagination
 - Authorization

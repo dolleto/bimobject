@@ -11,24 +11,27 @@ class WinemakerViewSetTests(APITestCase):
     def test_list_winemakers(self):
         url = "/api/winemakers/"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
-        self.assertIn("name", response.data[0])
-        self.assertIn("address", response.data[0])
+        self.assertEqual(len(results), 2)
+        self.assertIn("name", results[0])
+        self.assertIn("address", results[0])
 
     def test_search_winemakers(self):
         url = "/api/winemakers/?search=Winemaker B"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]["name"], "Winemaker B")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["name"], "Winemaker B")
 
     def test_order_winemakers(self):
         url = "/api/winemakers/?ordering=name"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]["name"], "Winemaker A")
-        self.assertEqual(response.data[1]["name"], "Winemaker B")
+        self.assertEqual(results[0]["name"], "Winemaker A")
+        self.assertEqual(results[1]["name"], "Winemaker B")
 
 
 class WineBottleViewSetTests(APITestCase):
@@ -59,8 +62,9 @@ class WineBottleViewSetTests(APITestCase):
     def test_list_winebottles(self):
         url = "/api/winebottles/"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)
+        self.assertEqual(len(results), 2)
 
     def test_filter_winebottles(self):
         url = "/api/winebottles/?style=dry"
@@ -75,16 +79,18 @@ class WineBottleViewSetTests(APITestCase):
     def test_search_winebottles(self):
         url = "/api/winebottles/?search=Wine A"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]["name"], "Wine A")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["name"], "Wine A")
 
     def test_order_winebottles(self):
         url = "/api/winebottles/?ordering=year"
         response = self.client.get(url)
+        results = response.data["results"]
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]["year"], 2019)
-        self.assertEqual(response.data[1]["year"], 2020)
+        self.assertEqual(results[0]["year"], 2019)
+        self.assertEqual(results[1]["year"], 2020)
 
     def test_winebottles_by_winemaker(self):
         url = "/api/winebottles/by_winemaker/?winemaker_id=" + str(self.winemaker1.id)

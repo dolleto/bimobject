@@ -13,6 +13,9 @@ class Winemaker(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name"]
+
 
 class WineBottle(models.Model):
     """
@@ -45,3 +48,6 @@ class WineBottle(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.year})"
+
+    class Meta:
+        ordering = ["name", "year", "count_in_winecellar"]
