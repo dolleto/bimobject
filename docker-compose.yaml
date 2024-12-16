@@ -20,9 +20,9 @@ services:
     image: postgres:14
     container_name: wine_api_db
     environment:
-      POSTGRES_USER: wineuser
-      POSTGRES_PASSWORD: winepassword
-      POSTGRES_DB: winemanager
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
