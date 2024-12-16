@@ -1,12 +1,11 @@
 # Wine Manager
 
 Simple backend API with a datastore to service a frontend for a wine collection management application.
-Project is done using Python and Django as it was the easiest for me.
+Project is implemented using Python and Django as it was the easiest for me.
 
 ## Pre-requisites
 
-- Python 3.11 is installed
-- Docker is installed
+- Docker
 
 ## Set local environment
 
@@ -25,9 +24,28 @@ docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py test
 ```
 
+## Further improvement ideas for the project
+
+### API logic
+
+- Implement permissions controls (admin, read only, ...).
+- Improve requests validation messages (currently will return Django default validation messages).
+- Consider a Cellar relation (a winemaker may have multiple cellars).
+
+### Architecture
+
+- Add NGINX reverse proxy (for load balancing, caching, traffic control, security).
+- Cache endpoints (winemakers and wine bottles will not be updated frequently).
+- Add Elasticsearch for improved search features and latency.
+- Consider distributed DB for improved availability (and latency if multiple physical locations).
+
+### Others
+
+- Create API specification
+
 ## Example requests
 
-The app is served on port 8000 (```http://localhost:8000/api/```).
+The app is served locally on port 8000 (```http://localhost:8000/api/```).
 
 1. Create a new winemaker:
 ```
@@ -93,8 +111,3 @@ curl -X GET "http://localhost:8000/api/winebottles/?style=dry"
 ```
 curl -X GET "http://localhost:8000/api/winebottles/by_winemaker/?winemaker_id=1"
 ```
-
-## Additional improvement directions for this project
-
-- Add Cellar relation (a winemaker may have multiple cellars)
-- Authorization
